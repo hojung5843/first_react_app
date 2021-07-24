@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import NavBar from './components/NavBar';
+import Total from './components/total';
 import Counters from './components/counters';
 class App extends Component {
     state = { 
         counters: [ 
             {id: 1, value: 0},
-            {id: 2, value: 2},
+            {id: 2, value: 0},
             {id: 3, value: 0},
             {id: 4, value: 0}
         ]
@@ -22,6 +22,7 @@ class App extends Component {
         counters[index].value++;
         this.setState({ counters });
     }
+
     handleReset = () => {
         const counters = this.state.counters.map(c => {
             c.value = 0;
@@ -29,22 +30,37 @@ class App extends Component {
         })
         this.setState({ counters });
     }
-    handleDelete = (counterId) =>{
-        console.log(counterId)
-        const counters =  this.state.counters.filter(c => c.id !== counterId);
-        this.setState({ counters })
+
+    handleDecrement = (counter) =>{
+        const counters =  this.state.counters.filter(c => c.id !== counter.id);
+        const index = this.state.counters.indexOf(counter);
+        console.log(index);
+        if(this.state.counters[index].value === 0){
+            return;
+        } else {
+            this.state.counters[index].value--; 
+        }
+        this.setState( this.state.counters )
+    }
+
+    handleTotal = () => {
+        let total = 0;
+        for(var i = 0; i < this.state.counters.length; i++){
+            total += this.state.counters[i].value;
+        }
+        return total;
     }
 
     render() { 
         return ( 
             <React.Fragment>
-                <NavBar totalCounters = {this.state.counters.filter( c => c.value > 0).length }></NavBar>
+                <Total totalCounters = { this.handleTotal() }></Total>
                 <main className="container">
                     <Counters 
                         counters = {this.state.counters}
                         onReset={this.handleReset}
                         onIncrement={this.handleIncrement}
-                        onDelete={this.handleDelete}>
+                        onDecrement={this.handleDecrement}>
                     </Counters>
                 </main>
                 
