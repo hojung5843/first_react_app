@@ -28,9 +28,7 @@ class App extends Component {
     }
 
     handleDecrement = (counter) =>{
-        const counters =  this.state.counters.filter(c => c.id !== counter.id);
         const index = this.state.counters.indexOf(counter);
-        console.log(index);
         if(this.state.counters[index].value === 0){
             return;
         } else {
