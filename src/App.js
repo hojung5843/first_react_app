@@ -10,10 +10,6 @@ class App extends Component {
             {id: 4, value: 0, name: "Hojung"}
         ]
     }
-    constructor() {
-        super();
-        console.log('App - Constructor');
-    }
     
     handleIncrement = counter => {
         const counters = [...this.state.counters];
