@@ -4,10 +4,10 @@ import Counters from './components/counters';
 class App extends Component {
     state = { 
         counters: [ 
-            {id: 1, value: 0},
-            {id: 2, value: 0},
-            {id: 3, value: 0},
-            {id: 4, value: 0}
+            {id: 1, value: 0, name: "Yoseph"},
+            {id: 2, value: 0, name: "Hyunseok"},
+            {id: 3, value: 0, name: "Suhyun"},
+            {id: 4, value: 0, name: "Hojung"}
         ]
     }
     constructor() {
